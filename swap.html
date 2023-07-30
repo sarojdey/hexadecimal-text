@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to Hexadecimal Converter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .heading {
+        color: rgb(215, 230, 76);
+        text-align: center;
+        padding: 50px;
+      }
+      .answer {
+        color: white;
+        text-align: center;
+        padding: 50px;
+      }
+      .Swap {
+        text-align: center;
+      }
+      .input-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body style="background-color: rgb(21, 21, 21)">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="heading">
+            <h1>Text to Hexadecimal Converter</h1>
+          </div>
+          <div class="input-container">
+            <div class="input-group input-group-lg">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter text"
+                aria-label="Enter text"
+                aria-describedby="button-addon2"
+                id="textInput"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="button-addon2"
+              >
+                Convert
+              </button>
+            </div>
+          </div>
+          <div class="answer">
+            <h4 id="outputHex">Output will appear here!</h4>
+          </div>
+          <div class="Swap">
+            <button type="button" class="btn btn-primary" id="swapButton">
+              Swap
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document
+        .getElementById("button-addon2")
+        .addEventListener("click", convertTextToHex);
+
+      function convertTextToHex() {
+        const textInput = document.getElementById("textInput");
+        const outputHex = document.getElementById("outputHex");
+
+        const text = textInput.value;
+
+        const hexadecimal = textToHex(text);
+        outputHex.textContent = hexadecimal;
+      }
+
+      function textToHex(text) {
+        let hexadecimal = "";
+        for (let i = 0; i < text.length; i++) {
+          const charCode = text.charCodeAt(i);
+          const hexCode = charCode.toString(16).toUpperCase();
+          hexadecimal += hexCode.padStart(2, "0");
+        }
+        return hexadecimal;
+      }
+      function navigateToSwapPage() {
+        window.location.href = "index.html";
+      }
+      document
+        .getElementById("swapButton")
+        .addEventListener("click", navigateToSwapPage);
+    </script>
+  </body>
+</html>
